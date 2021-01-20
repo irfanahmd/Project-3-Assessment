@@ -21,29 +21,26 @@
   <body>
     <h1>Wacky Widgets</h1>
 
-    <p>
-      {% if widgets|length == 0 %} No Widgets Exist {% else %} 
-      <table>
+    {% if widgets|length == 0 %} No Widgets Exist {% else %}
+    <table class="pure-table pure-table-striped">
+      <thead>
         <tr>
-      <th>Description</th>
-      <th>Quantity</th>
-      <th>Delete</th>
+          <th>Description</th>
+          <th>Quantity</th>
+          <th>Delete</th>
         </tr>
-        
-      {%for widget in widgets%} 
-      <tr>
-        <td>{{widget.description}}</td>
-        <td>{{widget.quantity}}</td>
-        <td><a href="{% url 'widget_delete' widget.id %}"> delete </a></td>
-      </tr>
-      {%endfor%}
-
-        
-
-      </table>
-      
-      {%endif%}
-    </p>
+      </thead>
+      <tbody>
+        {%for widget in widgets%}
+        <tr>
+          <td>{{widget.description}}</td>
+          <td>{{widget.quantity}}</td>
+          <td><a href="{% url 'widget_delete' widget.id %}"> X </a></td>
+        </tr>
+        {%endfor%}
+      </tbody>
+    </table>
+    {%endif%}
 
     <form class="pure-form" action="" method="post">
       <!-- Django requires the following for security purposes -->
